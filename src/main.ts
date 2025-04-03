@@ -1,10 +1,11 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
-
+import * as dotenv from 'dotenv';
 async function bootstrap() {
   const PORT = process.env.PORT || 8000;
   const app = await NestFactory.create(AppModule);
+  dotenv.config();
 
   app.enableCors({
     origin: '*',
