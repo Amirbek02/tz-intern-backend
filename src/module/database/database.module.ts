@@ -18,8 +18,7 @@ import { RoleEntity } from './entities/role.entity';
         rejectUnauthorized: false,
       },
       entities: [UserEntity, RoleEntity],
-      synchronize: false, // Лучше отключить для продакшн-среды
-      migrations: ['src/migrations/*.ts'], // Настройте путь для миграций
+      synchronize: true,
     }),
   ],
   controllers: [],
