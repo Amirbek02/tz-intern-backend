@@ -19,6 +19,11 @@ import { RoleEntity } from './entities/role.entity';
       },
       entities: [UserEntity, RoleEntity],
       synchronize: true,
+      logging: true,
+      extra: {
+        connectionTimeoutMillis: 30000, // Увеличенный таймаут
+        idle_in_transaction_session_timeout: 30000, // Увеличенный таймаут для простоя
+      },
     }),
   ],
   controllers: [],
