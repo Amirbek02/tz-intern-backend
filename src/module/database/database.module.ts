@@ -7,16 +7,19 @@ import { RoleEntity } from './entities/role.entity';
   imports: [
     TypeOrmModule.forRoot({
       type: 'postgres',
-      host: process.env.DB_HOST || 'localhost',
-      port: Number(process.env.DB_PORT) || 2002,
-      username: process.env.DB_USERNAME || 'postgres',
-      password: process.env.DB_PASSWORD || 'amir',
-      database: process.env.DB_NAME || 'tz-intern',
+      host:
+        process.env.DB_HOST ||
+        'dpg-cvmpqnbe5dus739mbvbg-a.frankfurt-postgres.render.com',
+      port: Number(process.env.DB_PORT) || 5432,
+      username: process.env.DB_USERNAME || 'tz_intern_user',
+      password: process.env.DB_PASSWORD || 'LQNGjaiR2ivnhSFTmAqeZ9I8COsBEDeH',
+      database: process.env.DB_NAME || 'tz_intern',
       ssl: {
         rejectUnauthorized: false,
       },
       entities: [UserEntity, RoleEntity],
-      synchronize: true,
+      synchronize: false, // Лучше отключить для продакшн-среды
+      migrations: ['src/migrations/*.ts'], // Настройте путь для миграций
     }),
   ],
   controllers: [],
