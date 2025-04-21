@@ -59,7 +59,7 @@ export class AuthService {
       throw error;
     }
   }
-  async registration(userDto: UserEntity, refId: string) {
+  async registration(userDto: CreateUserDto, refId: string) {
     const register = await this.userService.getCheckedEmail(
       userDto.email,
       refId,
