@@ -2,6 +2,7 @@ import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { UserEntity } from './entities/user.entity';
 import { RoleEntity } from './entities/role.entity';
+import { FlowerEntity } from './entities/flower.entity';
 
 @Module({
   imports: [
@@ -17,7 +18,7 @@ import { RoleEntity } from './entities/role.entity';
       ssl: {
         rejectUnauthorized: false,
       },
-      entities: [UserEntity, RoleEntity],
+      entities: [UserEntity, RoleEntity, FlowerEntity],
       synchronize: true,
       logging: true,
     }),

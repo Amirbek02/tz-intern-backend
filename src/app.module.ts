@@ -6,6 +6,7 @@ import { ConfigModule } from '@nestjs/config';
 import { LoggerModule } from './helpers/logger/logger.module';
 import { RoleModule } from './module/role/role..module';
 import { AuthModule } from './module/auth/auth.module';
+import { FlowerModule } from './module/flower/flower.module';
 
 @Module({
   imports: [
@@ -15,6 +16,7 @@ import { AuthModule } from './module/auth/auth.module';
     LoggerModule,
     RoleModule,
     AuthModule,
+    FlowerModule,
   ],
   controllers: [],
   providers: [],
