@@ -1,4 +1,6 @@
 import {
+  HttpException,
+  HttpStatus,
   Injectable,
   NotFoundException,
   UnauthorizedException,
@@ -56,6 +58,22 @@ export class AuthService {
       this.logger.error(`Error generating token ${error}`, refId);
       throw error;
     }
+  }
+  async registration(userDto: UserEntity, refId: string) {
+    const register = await this.userService.getCheckedEmail(
+      userDto.email,
+      refId,
+    );
+    if (register) {
+      throw new HttpException(
+        'Пользователь с таким email существует',
+        HttpStatus.BAD_REQUEST,
+      );
+    }
+
+    const user = await this.userService.create(userDto, refId);
+
+    return user;
   }
 
   private async loginIn(userDto, refId: string) {
