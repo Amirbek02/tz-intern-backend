@@ -5,6 +5,7 @@ import { CustomLogger } from 'src/helpers/logger/logger.service';
 import { loginDto } from './dto/auth.dto';
 import { ApiOperation, ApiResponse } from '@nestjs/swagger';
 import { UserEntity } from '../database/entities/user.entity';
+import { CreateUserDto } from '../user/dto/create-user.dto';
 
 @Controller('auth')
 export class AuthController {
@@ -12,7 +13,8 @@ export class AuthController {
     private readonly authService: AuthService,
     private readonly logger: CustomLogger,
   ) {}
-
+  @ApiOperation({ summary: 'Sign-in' })
+  @ApiResponse({ status: 200, type: [loginDto] })
   @Post('login')
   async login(@Body() userDto: loginDto, @RefId() refId: string) {
     this.logger.info(`[START] login in site`, refId);
@@ -28,9 +30,9 @@ export class AuthController {
     }
   }
   @ApiOperation({ summary: 'Sign-up' })
-  @ApiResponse({ status: 200, type: [UserEntity] })
+  @ApiResponse({ status: 200, type: [CreateUserDto] })
   @Post('/registration')
-  registration(@Body() userDto: UserEntity, @RefId() refId: string) {
+  registration(@Body() userDto: CreateUserDto, @RefId() refId: string) {
     this.logger.info(`[START] registration in site`, refId);
     try {
       return this.authService.registration(userDto, refId);
