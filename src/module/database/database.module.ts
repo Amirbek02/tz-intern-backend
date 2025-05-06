@@ -11,11 +11,12 @@ import { CartEntity } from './entities/cart.entity';
       type: 'postgres',
       host:
         process.env.DB_HOST ||
-        'dpg-cvndckodl3ps73akoceg-a.frankfurt-postgres.render.com',
+        'ep-dawn-rice-a2mu9ufw-pooler.eu-central-1.aws.neon.tech',
       port: Number(process.env.DB_PORT) || 5432,
-      username: process.env.DB_USERNAME || 'tz_intern_unyp_user',
-      password: process.env.DB_PASSWORD || 'TK1Zy633k0h0KFwDuMzRse3D9kM6pw50',
-      database: process.env.DB_NAME || 'tz_intern_unyp',
+      username: process.env.DB_USERNAME || 'neondb_owner',
+      password: process.env.DB_PASSWORD || 'npg_BhAJsvz8q7EC',
+      database: process.env.DB_NAME || 'neondb',
+
       ssl: {
         rejectUnauthorized: false,
       },
