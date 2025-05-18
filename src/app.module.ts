@@ -8,6 +8,7 @@ import { RoleModule } from './module/role/role..module';
 import { AuthModule } from './module/auth/auth.module';
 import { FlowerModule } from './module/flower/flower.module';
 import { CartModule } from './module/cart/cart.module';
+import { NotificationModule } from './module/notification/notification.module';
 
 @Module({
   imports: [
@@ -19,6 +20,7 @@ import { CartModule } from './module/cart/cart.module';
     AuthModule,
     FlowerModule,
     CartModule,
+    NotificationModule,
   ],
   controllers: [],
   providers: [],

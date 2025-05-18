@@ -2,10 +2,17 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { CartEntity } from '../database/entities/cart.entity';
 import { Repository } from 'typeorm';
 import { CustomLogger } from 'src/helpers/logger/logger.service';
+import { NotificationEntity } from '../database/entities/notification.entity';
+import { UserEntity } from '../database/entities/user.entity'; // если нужно
+import { FlowerEntity } from '../database/entities/flower.entity';
 
 export class CartService {
   constructor(
     @InjectRepository(CartEntity) private cartRepo: Repository<CartEntity>,
+    @InjectRepository(NotificationEntity)
+    private notificationRepo: Repository<NotificationEntity>,
+    @InjectRepository(FlowerEntity)
+    private flowerRepo: Repository<FlowerEntity>,
     private readonly logger: CustomLogger,
   ) {}
 
@@ -14,17 +21,26 @@ export class CartService {
       where: { user: { id: userId }, flower: { id: productId } },
     });
 
+    const now = new Date();
+
     if (existing) {
       existing.quantity += quantity;
-      return this.cartRepo.save(existing);
+      await this.cartRepo.save(existing);
+    } else {
+      const newItem = this.cartRepo.create({
+        user: { id: userId },
+        flower: { id: productId },
+        lastWateredAt: now,
+        quantity,
+      });
+      await this.cartRepo.save(newItem);
     }
+  }
 
-    const newItem = this.cartRepo.create({
-      user: { id: userId },
-      flower: { id: productId },
-      quantity,
+  async getCartUser() {
+    return this.cartRepo.find({
+      relations: ['user'],
     });
-    return this.cartRepo.save(newItem);
   }
 
   async getCart(userId: number) {

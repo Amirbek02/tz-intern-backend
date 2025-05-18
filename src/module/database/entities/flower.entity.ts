@@ -17,6 +17,9 @@ export class FlowerEntity {
   @Column()
   category: string;
 
+  @Column({ type: 'int', default: 1 })
+  wateringFrequency: number;
+
   @Column()
   waterAmountMlPerDay: number;
 }

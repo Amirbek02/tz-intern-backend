@@ -4,6 +4,7 @@ import { UserEntity } from './entities/user.entity';
 import { RoleEntity } from './entities/role.entity';
 import { FlowerEntity } from './entities/flower.entity';
 import { CartEntity } from './entities/cart.entity';
+import { NotificationEntity } from './entities/notification.entity';
 
 @Module({
   imports: [
@@ -20,7 +21,13 @@ import { CartEntity } from './entities/cart.entity';
       ssl: {
         rejectUnauthorized: false,
       },
-      entities: [UserEntity, RoleEntity, FlowerEntity, CartEntity],
+      entities: [
+        UserEntity,
+        RoleEntity,
+        FlowerEntity,
+        CartEntity,
+        NotificationEntity,
+      ],
       synchronize: true,
       logging: true,
     }),

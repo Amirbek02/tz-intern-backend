@@ -13,6 +13,9 @@ export class CartEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
+  @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
+  lastWateredAt: Date;
+
   @ManyToOne(() => UserEntity, (user) => user.cart)
   @JoinColumn({ name: 'userId' })
   user: UserEntity;
