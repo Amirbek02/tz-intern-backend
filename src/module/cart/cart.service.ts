@@ -25,7 +25,7 @@ export class CartService {
 
     if (existing) {
       existing.quantity += quantity;
-      await this.cartRepo.save(existing);
+      return await this.cartRepo.save(existing);
     } else {
       const newItem = this.cartRepo.create({
         user: { id: userId },
@@ -33,7 +33,7 @@ export class CartService {
         lastWateredAt: now,
         quantity,
       });
-      await this.cartRepo.save(newItem);
+      return await this.cartRepo.save(newItem);
     }
   }
 

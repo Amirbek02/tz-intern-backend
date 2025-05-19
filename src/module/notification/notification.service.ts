@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { Cron, CronExpression } from '@nestjs/schedule';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository, LessThan, Not } from 'typeorm';
+import { Repository } from 'typeorm';
 import { CartEntity } from '../database/entities/cart.entity';
 import { NotificationEntity } from '../database/entities/notification.entity';
 import { CustomLogger } from 'src/helpers/logger/logger.service';
@@ -36,7 +36,7 @@ export class NotificationService {
         if (now >= nextWateringDate) {
           // Тут можно отправить уведомление (например, через email или push)
           console.log(
-            `Пора поливать ${flower.title} для пользователя #${user.id}`,
+            `Пора поливать ${flower.name} для пользователя #${user.id}`,
           );
 
           // Сохраняем лог уведомления

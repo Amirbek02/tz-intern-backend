@@ -5,11 +5,35 @@ export class FlowerEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column()
-  title: string;
+  @Column({ unique: true })
+  name: string;
 
-  @Column()
+  @Column({ type: 'text', nullable: true })
   description: string;
+
+  @Column('jsonb', { nullable: true })
+  lighting: {
+    requirements: string;
+    importance: string;
+    advice: string;
+  };
+
+  @Column('jsonb', { nullable: true })
+  watering: {
+    amount: string;
+    importance: string;
+    advice: string;
+  };
+
+  @Column('jsonb', { nullable: true })
+  fertilization: {
+    frequency: string;
+    importance: string;
+    advice?: string;
+  };
+
+  @Column('text', { array: true, nullable: true })
+  avoid: string[];
 
   @Column()
   imageUrl: string;
@@ -17,7 +41,7 @@ export class FlowerEntity {
   @Column()
   category: string;
 
-  @Column({ type: 'int', default: 1 })
+  @Column()
   wateringFrequency: number;
 
   @Column()
